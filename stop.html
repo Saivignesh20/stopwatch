@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            color: white;
+            font-size: 30px;
+        background: url("2FwK691.jpg.crdownload");
+        }
+        #container{
+            display: flex;
+            gap: 30px;
+            color: white;
+            
+            width: fit-content;
+            margin: auto;
+            font-size: 50px;
+            left: 0;
+            padding: 40px;
+            
+
+        }
+        .clo{
+            display: flex;
+            gap: 10px;
+            color: white;
+        }
+        .but{
+            display: flex;
+            gap: 20vw;
+            margin-top: 30px;
+            margin-left: 40px;
+        }
+        .butt{
+            background-color: black;
+            color: white;
+            font-size: 30px;
+            padding: 30px;
+        }
+        #abc{
+            margin: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="clo">
+        <h1 id="hr" >00</h1><h1>hr:</h1>
+        </div>
+       <div class="clo"> <h1 id="min">00</h1><h1>min:</h1></div>
+       <div class="clo"> <h1 id="sec">00</h1><h1>sec:</h1></div>
+       <div class="clo"> <h1 id="mill">00</h1><h1>millisec</h1></div>
+    </div>
+    <div class="but">
+        <button id="start" class="butt" onclick="start()">Start</button>
+        <button id="stop" class="butt" onclick="stop()">Stop</button>
+        <button id="reset" class="butt" onclick="reset()">Reset</button>
+        <button id="read" class="butt" onclick="read()">Read</button>
+    </div>
+   <div id="abc"></div>
+    <script>
+        
+         let count=0;
+         let secc=0;
+         let minc=0;
+         let hrc=0;
+         let timer=false;
+         function start(){
+            timer=true;
+            stopwatch();
+         }
+         function stopwatch(){
+            if(timer==true){
+                count+=1;
+                if(count<10){
+                document.getElementById("mill").innerHTML=`0${count}`;}
+              
+                if(count>=10 && count<100){
+                    document.getElementById("mill").innerHTML=count;
+                }
+                if(count==100){
+                document.getElementById("mill").innerHTML="00";
+               }
+                if(count==100){
+                    count=0;
+                    secc+=1;
+                    if(secc<10){
+                document.getElementById("sec").innerHTML=`0${secc}`;}
+                if(secc>=10){
+                    document.getElementById("sec").innerHTML=secc;
+                }
+                }
+                if(secc==60){
+                    secc=0;
+                    minc+=1;
+                    if(minc<10){
+                document.getElementById("min").innerHTML=`0${minc}`;}
+                if(minc>=10){
+                    document.getElementById("min").innerHTML=minc;
+                }
+                }
+                if(minc==60){
+                    hrc+=1;
+                    minc=0;
+                    if(hrc<10){
+                document.getElementById("hr").innerHTML=`0${hrc}`;}
+                if(hrc>=10){
+                    document.getElementById("hr").innerHTML=hrc;
+                }
+ 
+                }
+                setTimeout("stopwatch()",10);
+
+            }
+            if(timer==false){
+                return;
+            }
+         }
+         function stop(){
+            timer=false;
+            return;
+         }
+         function reset(){
+            timer=false;
+           count=0;
+             secc=0;
+            minc=0;
+              hrc=0;
+             document.getElementById("hr").innerHTML="00";
+             document.getElementById("min").innerHTML="00";
+             document.getElementById("sec").innerHTML="00";
+             document.getElementById("mill").innerHTML="00";
+         }
+         function read(){
+               let a=`${hrc} hr: ${minc} min: ${secc} sec: ${count} ms`;
+              document.getElementById("abc").innerHTML=a;
+         }
+         
+    </script>
+</body>
+</html>
